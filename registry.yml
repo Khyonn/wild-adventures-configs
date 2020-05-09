@@ -1,6 +1,8 @@
+# server port
 server:
   port: 80
 
+# registry
 eureka:
   client:
     registerWithEureka: false
