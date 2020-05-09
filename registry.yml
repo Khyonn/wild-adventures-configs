@@ -1,0 +1,11 @@
+server:
+  port: 80
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://edgeregistry/eureka/
+  instance:
+    preferIpAddress: true
