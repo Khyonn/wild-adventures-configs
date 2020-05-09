@@ -1,0 +1,46 @@
+# server port
+server:
+  port: 80
+
+# spring
+spring:
+  # zipkin
+  zipkin:
+    baseUrl: http://zipkin:9411
+
+  # database
+  datasource:
+    url: jdbc:mysql://commentsmysql:3306/comments
+    username: comments
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+
+  # access
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/auth/realms/wild-adventures
+
+# registry
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://edgeregistry/eureka/
+  instance:
+    prefer-ip-address: true
+
+# communication with keycloak
+wildadventures:
+  comments:
+    keycloak:
+      serverUrl: http://keycloak:8080/auth
+      realm: wild-adventures
+      clientId: comments
+      clientSecret: 4057e459-ae6e-40ac-8307-1300a03f737c
+      username: comments
+      password: comments
