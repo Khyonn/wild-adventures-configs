@@ -1,0 +1,39 @@
+# server port
+server:
+  port: 80
+
+spring:
+  # zipkin
+  zipkin:
+    baseUrl: http://zipkin:9411
+
+  # gateway
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      default-filters:
+        - TokenRelay
+
+  # access
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://keycloak:8080/auth/realms/wild-adventures
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: zuul-gateway
+            client-secret: 32714916-473a-4e11-ab22-186754944400
+
+# registry
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://edgeregistry/eureka/
+  instance:
+    preferIpAddress: true
